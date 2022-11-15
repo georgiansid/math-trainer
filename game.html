@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Trainer</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            background-color: #111111;
+            font-size: 3.5vmax;
+        }
+        form{
+            display: inline-block;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            color: #4D804D;
+        }
+        #num1,#num2,#input,button,#result{
+            float: right;
+        }
+        #ans{
+            color: aqua;
+        }
+        input{
+            background-color: #111111;
+            color: antiquewhite;
+            /* display: none; */
+            /* border: none; */
+            width: 100%;
+            /* height: 500px; */
+        }
+        @media screen and (min-width: 1024px) {
+            input {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <textarea></textarea> -->
+    <!-- <a style="color: #888888;">Score:
+        <a id="score" style="color: #888888;">
+
+        </a>
+    </a> -->
+    <form>
+        <a id="num1"></a><br><a id="num2"></a>
+        <br>
+        <a id="result"></a><br>
+        <input inputmode="numeric" class="mob_result">
+    </form>
+    <script>
+        // var score = 0;
+        // document.getElementById("score").innerHTML = score;
+        var result = document.getElementById("result");
+        document.addEventListener("keydown",function(){
+            var key = event.key;
+                if (key >= '0' && key <= '9'){
+            result.innerHTML = result.innerHTML + key;
+                }
+                if (key === "Backspace"){
+                result.innerHTML = result.innerHTML.slice(0,result.innerHTML.length-1)
+            }
+        })
+        var operation = Math.floor((Math.random() * 4) + 1);
+        // 1 - Addition
+        // 2 - Subtraction
+        // 3 - Multiplication
+        // 4 - Division
+    if (operation == 1) {
+        var num1 = Math.floor((Math.random() * 1000000000) + 1);
+        var num2 = Math.floor((Math.random() * 1000000000) + 1);
+        document.getElementById("num1").innerHTML = num1;
+        document.getElementById("num2").innerHTML = "+ " + "&nbsp;" + String(num2);
+        
+        document.addEventListener("keypress",function(){
+            var input = document.getElementById("result").innerHTML;
+            if (input==num1+num2){
+            document.getElementById("result").style.color = "green";
+            reload();
+        }
+        else{
+            document.getElementById("result").style.color = "red";
+        }
+        })
+    }
+    if (operation == 2) {
+        var num1 = Math.floor((Math.random() * 1000000000) + 1);
+        var num2 = Math.floor((Math.random() * num1) + 1);
+        document.getElementById("num1").innerHTML = num1;
+        document.getElementById("num2").innerHTML = "- " + "&nbsp;" + String(num2);
+        document.addEventListener("keypress",function(){
+            var input = document.getElementById("result").innerHTML;
+            if (input==num1-num2){
+            document.getElementById("result").style.color = "green";
+            reload();
+        }
+        else{
+            document.getElementById("result").style.color = "red";
+        }
+        })
+    }
+    if (operation == 3) {
+        var num1 = Math.floor((Math.random() * 1000) + 1);
+        var num2 = Math.floor((Math.random() * 50) + 2);
+        document.getElementById("num1").innerHTML = num1;
+        document.getElementById("num2").innerHTML = "x " + "&nbsp;" + String(num2);
+        document.addEventListener("keypress",function(){
+            var input = document.getElementById("result").innerHTML;
+            if (input==num1*num2){
+            document.getElementById("result").style.color = "green";
+            reload();
+        }
+        else{
+            document.getElementById("result").style.color = "red";
+        }
+        })
+    }
+    if (operation == 4) {
+        do {
+            var num1 = Math.floor((Math.random() * 10000) + 1);
+        var num2 = Math.floor((Math.random() * 30) + 3);
+        } while (num1%num2 != 0);
+        document.getElementById("num1").innerHTML = num1;
+        document.getElementById("num2").innerHTML = "÷ " + "&nbsp;" + String(num2);
+        document.addEventListener("keypress",function(){
+            var input = document.getElementById("result").innerHTML;
+            if (input==num1/num2){
+            document.getElementById("result").style.color = "green";
+            reload();
+        }
+        else{
+            document.getElementById("result").style.color = "red";
+        }
+        })
+    }
+    function reload(){
+        // score = score+1;
+        // document.getElementById("score").innerHTML = score;
+            setTimeout(function(){
+                window.location.reload();
+            },300);
+        }
+    </script>
+</body>
+</html>
