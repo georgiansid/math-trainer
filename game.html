@@ -12,7 +12,7 @@
             background-color: #111111;
             font-size: 3.5vmax;
         }
-        form{
+        div{
             display: inline-block;
             position: fixed;
             top: 50%;
@@ -28,10 +28,11 @@
         }
         input{
             background-color: #111111;
-            color: antiquewhite;
+            color: transparent;
             /* display: none; */
             /* border: none; */
             width: 100%;
+
             /* height: 500px; */
         }
         @media screen and (min-width: 1024px) {
@@ -48,12 +49,12 @@
 
         </a>
     </a> -->
-    <form>
+    <div>
         <a id="num1"></a><br><a id="num2"></a>
         <br>
         <a id="result"></a><br>
-        <input inputmode="numeric" class="mob_result">
-    </form>
+        <input inputmode="numeric" id="mob_result">
+    </div>
     <script>
         // var score = 0;
         // document.getElementById("score").innerHTML = score;
@@ -72,6 +73,7 @@
         // 2 - Subtraction
         // 3 - Multiplication
         // 4 - Division
+    var mq = window.matchMedia("(max-width: 1024px)");
     if (operation == 1) {
         var num1 = Math.floor((Math.random() * 1000000000) + 1);
         var num2 = Math.floor((Math.random() * 1000000000) + 1);
@@ -80,13 +82,19 @@
         
         document.addEventListener("keypress",function(){
             var input = document.getElementById("result").innerHTML;
-            if (input==num1+num2){
-            document.getElementById("result").style.color = "green";
-            reload();
-        }
-        else{
-            document.getElementById("result").style.color = "red";
-        }
+            // var mob_input = document.getElementById("mob_result").value;
+            // if (mq.matches){
+                
+            // }
+            // else{
+                if (input==num1+num2){
+                    document.getElementById("result").style.color = "green";
+                reload();
+                }
+                else{
+                    document.getElementById("result").style.color = "red";
+                // }
+            }
         })
     }
     if (operation == 2) {
